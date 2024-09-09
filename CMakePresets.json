@@ -107,7 +107,7 @@
     ],
     "packagePresets": [
     {
-      "name": "Default",
+      "name": "deb-package-release",
       "configurePreset": "linux-release",
       "generators": [
         "DEB"

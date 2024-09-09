@@ -1,7 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.12)
 
 option(BUILD_TESTS "Build tests" ON)
-option(CREATE_DEB_PACKAGE "Create .deb package" OFF)
+option(CONFIGURE_DEB_PACKAGE "Configure .deb package" OFF)
 set(TARGET_NAME hello_world CACHE INTERNAL "Target name")
 set(PROJECT_VERSION "0.0.4" CACHE INTERNAL "Version")
 
@@ -25,15 +25,15 @@ set_target_properties(${TARGET_NAME}
 )
 
 # deb-package.
-if(CREATE_DEB_PACKAGE)
-    include(CPack)
+if(CONFIGURE_DEB_PACKAGE)
     set(CPACK_GENERATOR DEB)
     set(CPACK_PACKAGE_NAME ${TARGET_NAME})
     set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
     set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
     set(CPACK_PACKAGE_ARCHITECTURE "amd64")
-    set(CPACK_PACKAGE_CONTACT ouncetim@gmail.com)
+    set(CPACK_PACKAGE_CONTACT "ouncetim@gmail.com")
     set(CPACK_PACKAGE_DIRECTORY "${CMAKE_BINARY_DIR}/deb")
+    include(CPack)
 endif()
 
 # Tests.

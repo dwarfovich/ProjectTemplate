@@ -1,5 +1,5 @@
 ﻿{
-    "version": 3,
+    "version": 6,
     "configurePresets": [
         {
             "name": "linux-base",
@@ -104,5 +104,14 @@
           "inherits": "build-msvc-base",
           "configurePreset": "msvc-debug"
         }
-    ]
+    ],
+    "packagePresets": [
+    {
+      "name": "Default",
+      "configurePreset": "linux-release",
+      "generators": [
+        "DEB"
+      ]
+    }
+  ]
 }

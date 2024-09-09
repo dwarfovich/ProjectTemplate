@@ -4,7 +4,7 @@ option(BUILD_TESTS "Build tests" ON)
 option(CONFIGURE_DEB_PACKAGE "Configure .deb package" OFF)
 
 set(TARGET_NAME hello_world CACHE INTERNAL "Target name")
-set(PROJECT_VERSION "0.0.4" CACHE INTERNAL "Version")
+set(PROJECT_VERSION "0.0.1" CACHE INTERNAL "Version")
 
 project (${TARGET_NAME} VERSION ${PROJECT_VERSION})
 add_executable (${TARGET_NAME} "src/main.cpp" "include/header.h")

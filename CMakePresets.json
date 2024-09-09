@@ -22,7 +22,6 @@
             "name": "linux-debug",
             "displayName": "Linux x64 Debug",
             "inherits": "linux-base",
-            
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
@@ -74,30 +73,35 @@
     ],
     "buildPresets": [
         {
-            "name": "linux-build-base",
-            "hidden": true,
-            "configurePreset": "linux-release"
-        },
-        {
-          "name": "linux-build-release",
-          "displayName": "Build Release",
-          "inherits": "linux-build-base",
-          "configurePreset": "linux-release"
-        },
-        {
-            "name": "msvc-build-base",
+            "name": "build-linux-base",
             "hidden": true
         },
         {
-          "name": "msvc-build-release",
+          "name": "build-linux-debug",
+          "displayName": "Build Linux Debug",
+          "inherits": "build-linux-base",
+          "configurePreset": "linux-debug"
+        },
+         {
+          "name": "build-linux-release",
+          "displayName": "Build Linux Release",
+          "inherits": "build-linux-base",
+          "configurePreset": "linux-release"
+        },
+        {
+            "name": "build-msvc-base",
+            "hidden": true
+        },
+        {
+          "name": "build-msvc-release",
           "displayName": "Build MSVC Release",
-          "inherits": "msvc-build-base",
+          "inherits": "build-msvc-base",
           "configurePreset": "msvc-release"
         },
         {
-          "name": "msvc-build-debug",
+          "name": "build-msvc-debug",
           "displayName": "Build MSVC Debug",
-          "inherits": "msvc-build-base",
+          "inherits": "build-msvc-base",
           "configurePreset": "msvc-debug"
         }
     ]

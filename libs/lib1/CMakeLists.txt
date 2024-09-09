@@ -1,14 +1,15 @@
-﻿add_library(lib1 STATIC
+﻿set(LIBRARY_NAME lib1 CACHE INTERNAL "Library name")
+add_library(${LIBRARY_NAME} STATIC
    "src/lib.cpp"
    "include/lib1/lib1.h"
 )
 
-target_include_directories(lib1
+target_include_directories(${LIBRARY_NAME}
     PUBLIC include
     PRIVATE src include/lib1)
 
-set_target_properties(lib1 PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
-target_compile_features(lib1 PUBLIC cxx_std_20)
+set_target_properties(${LIBRARY_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+target_compile_features(${LIBRARY_NAME} PUBLIC cxx_std_20)
 if(MSVC)
   # Force to always compile with W4
   if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")

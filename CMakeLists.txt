@@ -2,14 +2,21 @@
 
 option(BUILD_TESTS "Build tests" ON)
 option(CONFIGURE_DEB_PACKAGE "Configure .deb package" OFF)
+
 set(TARGET_NAME hello_world CACHE INTERNAL "Target name")
 set(PROJECT_VERSION "0.0.4" CACHE INTERNAL "Version")
 
 project (${TARGET_NAME} VERSION ${PROJECT_VERSION})
 add_executable (${TARGET_NAME} "src/main.cpp" "include/header.h")
-install(TARGETS ${TARGET_NAME} DESTINATION bin)
 include_directories("include/")
 set_property(TARGET ${TARGET_NAME} PROPERTY CXX_STANDARD 20)
+set_target_properties(${TARGET_NAME}
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+)
+install(TARGETS ${TARGET_NAME} DESTINATION bin)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -17,14 +24,7 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-set_target_properties(${TARGET_NAME}
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
-)
-
-# deb-package.
+# .deb package.
 if(CONFIGURE_DEB_PACKAGE)
     set(CPACK_GENERATOR DEB)
     set(CPACK_PACKAGE_NAME ${TARGET_NAME})

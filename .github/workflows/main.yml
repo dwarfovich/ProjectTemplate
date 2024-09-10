@@ -64,10 +64,8 @@ jobs:
         run: '${{ env.bin_path }}/${{ env.target_name }}'
 
       - name: Build package
-        #working-directory: ${{env.build_path}}
-        run: |
-            pwd
-            cpack -G DEB --preset ${{ env.package_preset }}
+        if: ${{ env.build_package }}
+        run: cpack -G DEB --preset ${{ env.package_preset }}
 
       - name: Create Release
         id: create_release
@@ -82,7 +80,7 @@ jobs:
 
       - name: Upload packet
         id: upload-app-asset
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -92,8 +90,9 @@ jobs:
           asset_content_type: application/octet-stream
 
       - name: Upload package
+        if: ${{ env.build_package }}
         id: upload-package-asset
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

@@ -22,6 +22,7 @@ jobs:
       release_folder: linux-release
       version_base: '1.0'
       build_tests: ${{ true }}
+      build_package: ${{ true }}
       # Variables to populate in "Initialize variables" step
       build_path: 
       bin_path: 
@@ -43,7 +44,7 @@ jobs:
       - name: Build package ${{ env.target_name }}
         working-directory: ${{env.hw_path}}
         run: |
-          cmake -DBUILD_TESTS=${{ env.build_tests }} -DPROJECT_VERSION=${{ env.version }} --preset ${{ env.cmake_preset }}
+          cmake -DBUILD_TESTS=${{ env.build_tests }} -DCONFIGURE_DEB_PACKAGE=${{ env.build_package }} -DPROJECT_VERSION=${{ env.version }} --preset ${{ env.cmake_preset }}
           cmake --build --preset ${{ env.cmake_build_preset }}
 
       - name: Run tests

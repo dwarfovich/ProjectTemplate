@@ -42,7 +42,7 @@ jobs:
       - name: Build package ${{ env.target_name }}
         working-directory: ${{env.hw_path}}
         run: |
-          cmake -DBuildTests=${{ env.build_tests }} -DPROJECT_VERSION=${{ env.version }} --preset ${{ env.cmake_preset }}
+          cmake -DBUILD_TESTS=${{ env.build_tests }} -DPROJECT_VERSION=${{ env.version }} --preset ${{ env.cmake_preset }}
           cmake --build --preset ${{ env.cmake_build_preset }}
 
       - name: Run tests

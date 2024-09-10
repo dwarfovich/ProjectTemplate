@@ -63,8 +63,10 @@ jobs:
         run: '${{ env.bin_path }}/${{ env.target_name }}'
 
       - name: Build package
-        #working-directory: ${{env.build_path}}
-        run: cpack -G DEB --preset ${{ env.package_preset }}
+        working-directory: ${{env.build_path}}
+        run: |
+            pwd
+            cpack -G DEB --preset ${{ env.package_preset }}
 
       - name: Create Release
         id: create_release

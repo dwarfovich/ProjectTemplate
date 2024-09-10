@@ -9,7 +9,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest) 
 
-add_executable(tests "test.cpp")
+add_executable(tests "lib1tests.cpp")
 
 set_target_properties(tests
     PROPERTIES
@@ -18,7 +18,7 @@ set_target_properties(tests
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 set_property(TARGET tests PROPERTY CXX_STANDARD 20)
-target_link_libraries(tests GTest::gtest_main)
+target_link_libraries(tests GTest::gtest_main lib1)
 
 include(GoogleTest)
 gtest_discover_tests(tests)

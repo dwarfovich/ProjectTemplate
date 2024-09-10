@@ -12,7 +12,7 @@ set(TARGET_NAME hello_world CACHE INTERNAL "Target name")
 set(PROJECT_VERSION "0.0.1" CACHE INTERNAL "Version")
 
 project (${TARGET_NAME} VERSION ${PROJECT_VERSION})
-add_executable (${TARGET_NAME} "src/main.cpp" "include/header.h")
+add_executable (${TARGET_NAME} "src/main.cpp")
 include_directories("include/")
 set_property(TARGET ${TARGET_NAME} PROPERTY CXX_STANDARD 20)
 target_link_libraries(${TARGET_NAME} lib1)

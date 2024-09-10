@@ -20,7 +20,7 @@ jobs:
       build_folder: build
       release_folder: linux-release
       version_base: '1.0'
-      build_tests: ${{ false }}
+      build_tests: ${{ true }}
       # Variables to populate in "Initialize variables" step
       build_path: 
       bin_path: 
